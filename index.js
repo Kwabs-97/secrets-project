@@ -150,7 +150,13 @@ app.post("/submit", async (req, res) => {
     }
   } catch (error) {}
 });
+
 //TODO: Create the post route for submit.
+
+app.post("/submit", async (req, res) => {
+  const enteredSecret = req.body.secret;
+});
+
 //Handle the submitted data and add it to the database
 
 passport.use(
