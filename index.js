@@ -59,8 +59,6 @@ app.get("/logout", (req, res) => {
 app.get("/secrets", async (req, res) => {
   if (req.isAuthenticated()) {
     //TODO: Update this to pull in the user secret to render in secrets.ejs
-
-    const result = await db.query("SELECT secret FROM users");
   } else {
     res.redirect("/login");
   }
@@ -75,6 +73,14 @@ app.get(
 );
 //TODO: Add a get route for the submit button
 //Think about how the logic should work with authentication.
+
+app.get("/submit", async (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("submit.ejs");
+  } else {
+    res.redirect("/login");
+  }
+});
 
 app.get(
   "/auth/google",
