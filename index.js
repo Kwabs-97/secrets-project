@@ -154,7 +154,13 @@ app.post("/submit", async (req, res) => {
 //TODO: Create the post route for submit.
 
 app.post("/submit", async (req, res) => {
-  const enteredSecret = req.body.secret;
+  const secret = req.body.secret;
+  try {
+    await db.query("UPDATE users SET secret = $1 WHERE email = $2", [
+      secret,
+      req.user.email,
+    ]);
+  } catch (error) {}
 });
 
 //Handle the submitted data and add it to the database
